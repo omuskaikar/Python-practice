@@ -1,3 +1,34 @@
+
+print("Enter the Name of Source File: ")
+sFile = input()
+print("Enter the Name of Target File: ")
+tFile = input()
+
+fileHandle = open(sFile, "r")
+texts = fileHandle.readlines()
+fileHandle.close()
+
+fileHandle = open(tFile, "w")
+for s in texts:
+    fileHandle.write(s)
+fileHandle.close()
+
+print("\nFile Copied Successfully!")
+
+
+
+
+f=open("om.txt","r")
+while 1:
+    char=f.read(1)
+    if not char:
+        break
+    print(char)
+f.close()
+
+
+
+
 count = 0
 number = int(input("enter the number:"))
 while number > 10:
@@ -22,6 +53,7 @@ c = m.count(letter)
 print(c)
 
 
+
 f = open("om.txt", "w")
 f.write("hatttttt")
 f.close()
@@ -41,6 +73,7 @@ f = open("om.txt", "r")
 for line in f:
     print(line)
 
+    
 
 fn1 = input("enter the name of first file:")
 fn2 = input("enter the name of 2nd file:")
@@ -55,6 +88,8 @@ for line in f2:
     print(line)
 
 
+    
+    
 f = open("om.txt", "w")
 n = int(input("enter the no. of students:"))
 while n > 0:
