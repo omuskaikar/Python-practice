@@ -1,68 +1,99 @@
-count = 0
-number = int(input("enter the number:"))
-while number > 10:
-    number = number // 6
-    count = count + 1
-print(count)
+import pandas as pd
+import numpy as np
+
+exam_data = {
+    "name": [
+        "Anastasia",
+        "Dima",
+        "Katherine",
+        "James",
+        "Emily",
+        "Michael",
+        "Matthew",
+        "Laura",
+        "Kevin",
+        "Jonas",
+    ],
+    "score": [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+    "attempts": [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+    "qualify": ["yes", "no", "yes", "no", "no", "yes", "yes", "no", "no", "yes"],
+}
+labels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
 
 
-f = open("om.txt", "w+")
-f.write("om is the best")
-f.close()
-f = open("om.txt", "r")
-for line in f:
-    output = line.title()
-print(output)
+df = pd.DataFrame(exam_data, index=labels)
 
 
-letter = input("enter letter:")
-f = open("om.txt", "r")
-m = f.read()
-c = m.count(letter)
-print(c)
+df.head(3)
 
 
-f = open("om.txt", "w")
-f.write("hatttttt")
-f.close()
-f = open("om.txt", "r")
-for line in f:
-    print(line)
-f.close()
-f = open("om.txt", "a")
-f.write("\naditya is also good")
-f.close()
-f = open("om.txt", "r")
-for line in f:
-    print(line)
+df1 = df[["name", "score"]]
+df1
 
 
-f = open("om.txt", "r")
-for line in f:
-    print(line)
+df1 = df.loc["a":"e", ["name", "score"]]
 
 
-fn1 = input("enter the name of first file:")
-fn2 = input("enter the name of 2nd file:")
-f1 = open(fn1, "r")
-f2 = open(fn2, "w")
-for line in f1:
-    f2.write(line)
-f1.close()
-f2.close()
-f2 = f2 = open(fn2, "r")
-for line in f2:
-    print(line)
+df.iloc[:7, [1, 3]]
 
 
-f = open("om.txt", "w")
-n = int(input("enter the no. of students:"))
-while n > 0:
-    a_id = input("enter student id:")
-    name = input("enter student name:")
-    n = n - 1
-    f.write("name:" + name + "  id:  " + a_id + "\n")
-f.close()
-f = open("om.txt", "r")
-for line in f:
-    print(line)
+df[df["attempts"] > 2]
+
+
+print("no. of coulmns is:", len(df.columns))
+print("no. of rows are:", len(df))
+
+
+df1 = df[df["score"] > 15]
+df1 = df1[df1["score"] <= 20]
+df1
+
+
+df1 = df[df["attempts"] < 2]
+df2 = df1[df1["score"] > 15]
+df2
+
+
+df.loc["k"] = ["om", 20.0, 2, "yes"]
+
+
+df
+
+
+df.drop("k", inplace=True)
+df
+
+
+df.sort_values(by=["name", "score"], ascending=[False, True])
+
+
+a = df.head(10)
+a
+
+
+df["qualify"] = df["qualify"].map({"yes": True, "no": False})
+
+
+df
+
+
+df.at["d", "score"] = 10.2
+
+
+df
+
+
+df.isnull()
+df.dropna()
+
+
+df.duplicated()
+
+
+l1 = [0, 10, 20, 40, 60, 80]
+l2 = [10, 30, 40, 50, 70]
+l3 = []
+for i in l1:
+    if i not in l2:
+        l3.append(i)
+print(l3)
